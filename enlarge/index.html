@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>放大器</title>
+</head>
+<style>
+    .box1 {
+        width: 400px;
+        height: 400px;
+        margin: 200px 0 0 200px;
+        display: inline-block;
+        position: relative;
+        cursor: move;
+        border: 1px solid #666;
+    }
+    .box2 {
+        width: 450px;
+        height: 450px;
+        margin-left: 50px;
+        border: 1px solid #666;
+        display: inline-block;
+        overflow: hidden;
+        display: none;
+    }
+    .mask {
+        width: 200px;
+        height: 200px;
+        background-color: rgba(51, 87, 170, 0.3);
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+    
+</style>
+<body>
+    <div class="box1">
+        <img src="./Images/small.jpg">
+        <div class="mask"></div>
+    </div>
+    <div class="box2">
+        <img src="./Images/big.jpg">
+    </div>
+</body>
+<script>
+    var box1 = document.querySelector(".box1");
+    var box2 = document.querySelector(".box2");
+    var mask = document.querySelector(".mask");
+    var img = document.querySelector(".box2 img");
+    box1.onmouseenter = function() {
+        //使放大区域可见
+        box2.style.display = "inline-block";
+        mask.style.display = "block";
+        
+    }
+    box1.onmouseleave = function() {
+        //使放大区域可见隐藏
+        box2.style.display = "none";
+        mask.style.display = "none";
+    }
+
+    box1.onmousemove = function(event) {
+        event = event || window.event;
+        var x = event.pageX - box1.offsetLeft - mask.offsetWidth/2;
+        var y = event.pageY - box1.offsetTop - mask.offsetHeight/2;
+        
+        //约束x
+        if(x<0){
+            x = 0;
+        }
+        else if(x>box1.offsetWidth - mask.offsetWidth){
+            x = box1.offsetWidth - mask.offsetWidth;
+        }
+        //约束y
+        if(y<0){
+            y = 0;
+        }
+        else if(y>box1.offsetHeight - mask.offsetHeight){
+            y = box1.offsetHeight - mask.offsetHeight;
+        }
+        mask.style.left = x + "px";
+        mask.style.top = y + "px";
+
+        //使右侧box2图片等比例移动
+        var scale = box2.offsetHeight/mask.offsetHeight;
+        var xx = x*scale;
+        var yy = y*scale;
+        img.style.marginLeft = -xx + "px";
+        img.style.marginTop = -yy + "px";
+    }
+</script>
+</html>

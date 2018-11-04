@@ -1,0 +1,323 @@
+/* 最外层 */
+.jd_container {
+    width: 100%;
+    max-width: 640px;
+    min-width: 300px;
+    background-color: #eee;
+    margin: 0 auto;
+}
+
+.jd_header {
+    height: 40px;
+    width: 100%;
+    max-width: 640px;
+    min-width: 300px;
+    background-color: rgb(201,21,35,0);
+    /* position: relative; */
+    position: fixed;
+    z-index: 99;
+    /* 使input能随之缩小放大 */
+    padding: 0 60px 0 70px;
+}
+
+.jd_header .header-logo {
+    width: 60px;
+    height: 36px;
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    background-image: url('../images/sprites.png');
+    background-repeat: no-repeat;
+    background-position: 0 -103px;
+
+    /* 压缩背景图片，使图片不失真 */
+    background-size: 200px,200px;
+}
+
+.jd_header .header-search {
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+    border-radius: 15px;
+    padding-left: 25px;
+}
+
+.jd_header .header-login {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    line-height: 40px;
+    color: white;
+    font-size: 17px;
+}
+
+.jd_header .header-glass {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: url('../images/sprites.png');
+    background-size: 200px 200px;
+    background-position: -60px -109px;
+    background-repeat: no-repeat;
+    top: 10px;
+    left: 75px;
+}
+
+
+/* 轮播图 */
+.jd_banner {
+    width: 100%;
+    overflow: hidden;
+
+    position: relative;
+}
+
+.jd_banner .banner-images {
+    /* 7张图片 8个img */
+    width: 1000%;
+
+    transform: translateX(-10%);
+}
+
+.jd_banner .banner-images li {
+    float: left;
+    width: 10%;
+}
+
+.jd_banner .banner-images li a {
+    display: block;
+    width: 100%;
+}
+
+.jd_banner .banner-images li a img {
+    /* display: block; */
+    width: 100%;
+}
+
+/* 轮播图索引 */
+
+.jd_banner .banner-index {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left:-44px; 
+}
+
+.jd_banner .banner-index li {
+    float: left;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1px solid white;
+    margin-left: 5px;
+}
+
+.jd_banner .banner-index li.current {
+    background-color: #fff;
+}
+
+/* 导航啦 */
+.jd_nav {
+    width: 100%;
+    border-bottom: 1px;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    
+}
+
+.jd_nav ul {
+    width: 100%;
+
+    padding-top: 5px;
+}
+
+.jd_nav ul li {
+    width: 25%;
+    float: left;
+}
+
+.jd_nav ul li a {
+    width: 100%;
+    display: block;
+}
+
+.jd_nav ul li a img {
+    width: 40%;
+    display: block;
+    margin: 0 auto;
+}
+
+.jd_nav ul li a p {
+    color: gray;
+    text-align: center;
+    padding: 5px 0;
+}
+
+/* jd主要内容 */
+.jd_main {
+    width: 100%;
+    padding: 0 5px;
+    margin-top: 10px;
+}
+
+.jd_main .main-content {
+    width: 100%;
+    background-color: #fff;
+    min-height: 150px;
+    margin-bottom: 5px;
+
+    /* 阴影 */
+    box-shadow: 0 0 2px #ccc;
+}
+
+.jd_main .main-content .content-top {
+    width: 100%;
+    height: 32px;
+    border-bottom: 1px solid #ccc;
+}
+
+.jd_main .main-content .content-bottom {
+    width: 100%;
+}
+
+/* 第一个内容区域 */
+/* .jd_main .main-content:first-child {} */
+
+.jd_main .main-content:first-child .content-top {
+    border-bottom: none;
+}
+
+.jd_main .main-content:first-child .content-top span {
+    background-image: url('../images/seckill-icon.png');
+    background-size: 20px 25px;
+    float: left;
+    width: 20px;
+    height: 25px;
+    margin-top: 3.5px;
+    margin-left: 5px;
+}
+
+.jd_main .main-content:first-child .content-top p {
+    color: rgb(201,21,35);
+    margin-left: 5px;
+    line-height: 32px;
+    float: left;
+}
+
+.jd_main .main-content:first-child .content-top ul {
+    padding-top: 8.5px;
+    float: left;
+    height: 32px;
+}
+
+.jd_main .main-content:first-child .content-top ul li {
+    float: left;
+    background-color: #000;
+    height: 15px;
+    width: 15px;
+    color: white;
+    margin-left: 3px;
+    text-align: center;
+    line-height: 15px;
+}
+
+.jd_main .main-content:first-child .content-top ul li:nth-child(3n) {
+    background-color: #fff;
+    color: black;
+    width: 10px;
+}
+
+.jd_main .main-content:first-child .content-top a {
+    line-height: 32px;
+    float: right;
+    color: gray;
+    margin-right: 5px;
+}
+
+.jd_main .main-content:first-child .content-bottom {
+    width: 100%;
+}
+
+.jd_main .main-content:first-child .content-bottom ul {
+    width: 100%;
+}
+
+.jd_main .main-content:first-child .content-bottom ul li {
+    float: left;
+    width: 33.33%;
+}
+
+.jd_main .main-content:first-child .content-bottom ul li a {
+    display: block;
+    width: 100%;
+    border-right: 1px solid gray;
+}
+
+.jd_main .main-content:first-child .content-bottom ul li:last-child a {
+    /* 最后一个无右边框 */
+    border-right: none;
+}
+
+.jd_main .main-content:first-child .content-bottom ul li a img {
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.jd_main .main-content:first-child .content-bottom ul li p {
+    text-align: center;
+    padding: 3px 0;
+    font-size: 12px;
+}
+
+.jd_main .main-content:first-child .content-bottom ul li p:nth-child(2) {
+    color: rgb(201,21,35);
+}
+
+.jd_main .main-content:first-child .content-bottom ul li p:nth-child(3) {
+    color: black;
+    text-decoration:line-through;
+}
+
+
+/* 京东超市内容区域 */
+/* .jd_main .main-content:nth-child(n+2) .content-top{} */
+
+.jd_main .main-content:nth-child(n+2) .content-top span {
+    color: rgba(0, 0, 0, .8);
+    line-height: 32px;
+    margin-left: 15px;
+    position: relative;
+}
+
+.jd_main .main-content:nth-child(n+2) .content-top span::before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 15px;
+    background-color: rgb(201,21,35);
+    left: -10px;
+    top: 8.5px;
+}
+
+.jd_main .main-content:nth-child(n+2) .content-bottom {
+    width: 100%;
+}
+
+.jd_main .main-content:nth-child(n+2) .content-bottom ul {
+    width: 100%;
+}
+
+.jd_main .main-content:nth-child(n+2) .content-bottom ul li {
+    width: 50%;
+}
+
+.jd_main .main-content:nth-child(n+2) .content-bottom ul li a {
+    width: 100%;
+    display: block;
+}
+
+.jd_main .main-content:nth-child(n+2) .content-bottom ul li a img {
+    width: 100%;
+    display: block;
+}

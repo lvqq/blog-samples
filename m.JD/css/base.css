@@ -1,0 +1,77 @@
+/* 通用样式 */
+*,
+::before,
+::after {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+
+    /* 清除默认高亮 */
+    -webkit-tap-highlight-color: transparent;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    /* font-family: "微软雅黑"; */
+    /* 移动端一般使用sans-serif */
+    font-family: "微软雅黑",sans-serif;
+}
+
+input {
+    border: none; 
+
+    /* 删除聚焦后浏览器渲染的边框 */
+    outline: none;
+    
+    /* 清除浏览器端默认样式 */
+    -webkit-appearance: none;
+}
+
+/* 删除input默认的叉 样式 */
+input::-webkit-search-cancel-button{
+    display: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+ol,ul {
+    list-style: none;
+}
+
+.f_l {
+    float: left;
+}
+
+.f_r {
+    float: right;
+}
+
+/* 清除浮动 */
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: both;
+    clear: both;
+}
+
+/* 边框通用样式 */
+.b_l {
+    border-left: 1px solid #eee;
+}
+
+.b_r {
+    border-right: 1px solid #eee;
+}
+
+.b_t {
+    border-top: 1px solid #eee;
+}
+
+.b_b {
+    border-bottom: 1px solid #eee;
+}

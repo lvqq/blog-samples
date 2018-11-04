@@ -1,0 +1,276 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Microsoft Yahei";
+}
+
+body,html {
+    height: 100%;
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #fff;
+    perspective: 550px; 
+    cursor: move;
+}
+
+.album {
+    position: relative;
+    margin: 0 auto;
+    margin-top: 40vh;
+    transform-style: preserve-3d;
+    text-align: center;
+    width: 800px;
+    height: 200px;
+    animation:  closer 3s ease;
+
+    transform: translateZ(460px);
+}
+
+.gallery {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    backface-visibility: hidden;
+    display: flex;
+}
+
+.left {
+    transform: rotateY(90deg) translateZ(-400px);
+}
+
+.current {
+    transform: translateZ(-400px);
+}
+
+.right {
+    transform: rotateY(-90deg) translateZ(-400px);
+}
+
+.back {
+    transform: rotateY(180deg) translateZ(-400px);
+}
+
+@keyframes closer {
+    0% {
+        transform: translateZ(-800px);
+    }
+
+    100% {
+        transform: translateZ(460px);
+    }
+}
+
+.change {
+    background-color: #fff;    
+    animation: color 8s linear infinite;
+    animation-play-state: paused;
+}
+
+@keyframes color {
+    0% {
+        background-color: #fff;
+    }
+
+    50% {
+        background-color: #868686;
+    }
+
+    100% {
+        background-color: #fff;        
+    }
+}
+
+.change2 {
+    background-color: #868686;
+    animation: color2 8s linear infinite;
+    animation-play-state: paused;
+}
+
+@keyframes color2 {
+    0% {
+        background-color: #868686;
+    }
+
+    50% {
+        background-color: #fff;                
+    }
+
+    100% {      
+        background-color: #868686;        
+    }
+}
+
+/* 相册布局 */
+.photo{
+    flex: 1;
+    perspective: 550px;
+    height: 100%;    
+    transform-style: preserve-3d;    
+}
+
+.main-photo {
+    width: 40%;
+    height: 90%;
+    margin:0 auto;
+    margin-top: 10%;
+    transform-style: preserve-3d;
+}
+
+.top-hold {
+    width: 4px;
+    height: 10%;
+    background-color: #000;
+    margin: 0 auto;
+}
+
+.main-hold {
+    width: 100%;
+    height: 70%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bottom-hold {
+    width: 4px;
+    height: 25%;
+    background-color: #000;
+    margin: 0 auto;
+}
+
+.side-hold {
+    width: 20px;
+    height: 40px;
+    background-color: #000;
+    margin: 0 auto;
+    /* transform-style: preserve-3d;
+    position: relative; */
+}
+
+
+
+
+.left-photo .side-hold {
+    transform: translateY(-50%) rotateX(90deg) skew(-15deg);
+}
+
+.center-photo .side-hold {
+    transform: translateY(-50%) rotateX(90deg);
+}
+
+.right-photo .side-hold {
+    transform: translateY(-50%) rotateX(90deg) skew(15deg);
+}
+
+/* 相册布局 */
+
+
+/* 相册背景 */
+
+.back-photo {
+    width: 40%;
+    height: 90%;
+    margin:0 auto;
+    margin-top: 10%;
+    transform-style: preserve-3d;
+}
+
+.center-back {
+    width: 100%;
+    height: 70%;
+    background-color: #ccc;
+}
+
+.bottom-back {
+    height: 15%;
+    width: 8px;
+    background-color: #ccc;
+    margin: 0 auto;    
+}
+
+.side-back {
+    height: 35px;
+    width: 8px;
+    background-color: #ccc;
+    margin: 0 auto;  
+    transform-origin: top;
+}
+
+.left-photo .back-photo {
+    transform: translateX(35%) translateY(-98%) translateZ(-30px);
+}
+
+.left-photo .back-photo .side-back {
+    transform: rotateX(90deg) skew(-43deg);
+}
+
+.center-photo .back-photo {
+    transform: translateZ(-30px) translateY(-98%);
+}
+
+.center-photo .back-photo .side-back {
+    transform: rotateX(90deg);
+}
+
+.right-photo .back-photo {
+    transform: translateX(-35%) translateY(-98%) translateZ(-30px);
+}
+
+.right-photo .back-photo .side-back {
+    transform: rotateX(90deg) skew(43deg);
+}
+/* 相册背景 */
+
+
+/* 橙色方块样式 */
+.top,
+.bottom {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    width: 100%;
+    height: 800px;
+    perspective: none; 
+}
+
+.bottom {
+    transform: translateY(-180px) rotateX(90deg);    
+}
+
+.top {
+    transform: translateY(-200px) rotateX(90deg) translateZ(220px);    
+}
+
+.diamonds {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.diamond {
+    flex: 1;
+}
+
+.orange {
+    width: 20px;
+    height: 30px;
+    margin: 0 auto;
+    margin-top: 43%;
+    background-color: #ff8000;
+}
+
+@keyframes orange-hide {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+/* 橙色方块样式 */

@@ -1,0 +1,165 @@
+body,html {
+    height: 100%;
+}
+
+.list-container {
+    width: 100%;
+    max-width: 640px;
+    min-width: 300px;
+    height: 100%;
+
+    margin: 0 auto;
+}
+
+/* 顶部通栏部分 */
+.header {
+    width: 100%;
+    max-width: 640px;
+    min-width: 300px;
+    height: 45px;
+    background:url('../images/header-bg.png') repeat-x;
+    background-size: 1px 44px;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+}
+
+[class^="icon-"] {
+    background-image: url('../images/sprites.png');
+    background-size: 200px 200px;
+}
+
+.header [class^="icon-"] {
+    position: absolute;
+    top: 0;
+    height: 44px;
+    width: 40px;
+    padding: 12px 10px;
+    /* 设置背景background-position相对于内容框定位 */
+    background-origin: content-box;
+    /* 设置背景图片从内容区开始覆盖 */
+    background-clip: content-box;
+}
+
+.header .icon-back {
+    background-position: -20px 0;
+    left: 0;
+}
+
+.header .icon-menu {
+    background-position: -60px 0;
+    right: 0;
+}
+
+.header form {
+    width: 100%;
+    height: 44px;
+    padding: 0 44px;
+}
+
+.header form input {
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    height: 30px;
+    margin-top: 7px;
+    padding-left: 10px;
+}
+
+.main {
+    padding-top: 45px;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* 左侧导航栏部分 */
+.main-left {
+    width: 90px;
+    height: 100%;
+    overflow: hidden;
+    float: left;
+}
+
+.main-left ul {
+    width: 100%;
+}
+
+.main-left ul li {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.main-left ul li:last-child {
+    border-bottom: none;
+}
+
+.main-left ul li.main-left-current {
+    border-right: none;
+}
+.main-left ul li.main-left-current a {
+    color: rgb(201,21,35);
+}
+
+
+.main-left ul li a {
+    display: block;
+    color: #333;
+}
+
+
+/* 右侧主要部分 */
+.main-right {
+    height: 100%;
+    overflow: hidden;
+}
+
+.main-right-box {
+    padding: 0 10px;
+}
+
+.main-right-box>a {
+    display: block;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.main-right-box>a>img {
+    width: 100%;
+}
+
+.main-right-box .hot-cat {
+    margin-top: 10px;
+}
+
+.main-right-box .hot-cat h3 {
+    font-size: 12px;
+}
+
+.main-right-box .hot-cat>ul {
+    width: 100%;
+}
+
+.main-right-box .hot-cat>ul>li {
+    width: 33.333%;
+    float: left;
+}
+
+.main-right-box .hot-cat>ul>li>a {
+    width: 100%;
+    display: block;
+    padding-top: 10px;
+}
+
+.main-right-box .hot-cat>ul>li>a>img {
+    display: block;
+    width: 62px;
+    height: 62px;
+    margin: 0 auto;
+}
+
+.main-right-box .hot-cat ul>li>a>p {
+    text-align: center;
+}

@@ -1,0 +1,247 @@
+/*  subbanner部分start  */
+.sub-banner {
+    position: relative;
+}
+.sub-banner a {
+    width: 100%;
+    height: 644px;
+    position: absolute;
+    background: url("../Image/sub-banner.jpg") no-repeat center top;
+}
+/*  subbanner部分end  */
+
+/*  main部分start  */
+.main {
+    position: relative;
+}
+
+.main-slide {
+    float: left;
+    margin:12px 0 0 220px;
+    width: 730px;
+    height: 454px;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-slide-img {
+    width: 710%;
+    position: relative;
+    overflow: hidden;
+    /* transition-property: left;
+    transition-timing-function: ease;
+    transition-duration: 1.5s; */
+}
+
+.main-slide-img li {
+    float: left;
+}
+
+.main-slide-bottom {
+    position: absolute;
+    left: 50%;
+    margin-left: -66px; 
+    bottom: 10px;
+}
+
+.main-slide-bottom li {
+    float: left;
+    width: 18px;
+    height: 18px;
+    color: #fff;
+    background-color: #3e3e3e;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 50%;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+.main-slide .main-slide-current {
+    background-color: #B61b1f;
+}
+
+.main-slide-arrow {
+    display: none;
+}
+
+.main-slide-arrow a {
+    position: absolute;
+    top: 50%;
+    width: 28px;
+    height: 62px;
+    /* background:rgb(0, 0, 0);
+    opacity: 0.3; */
+    background: rgba(0, 0, 0, 0.3);
+    color:#fff;
+    font:400 22px/62px "simsun";
+    text-align: center;
+    margin-top: -31px;
+}
+
+.main-slide-arrow a:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.main-slide-arrow-left {
+    left: 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.main-slide-arrow-right {
+    right: 0;
+    border-radius: 5px 0 0 5px;
+}
+
+.main-news {
+    float: right;
+    width: 250px;
+    height: 466px;
+}
+
+.main-news-top {
+    width: 248px;
+    height: 372px;
+    border: 1px solid #e4e4e4;
+    margin: 12px 0 5px 0;
+    overflow: hidden;
+}
+
+.main-news-top-faster {
+    height: 163px;
+    border-bottom: 1px dashed #e4e4e4;
+}
+
+.main-news-top-faster-title {
+    height: 32px;
+    line-height: 32px;
+    border-bottom: 1px dotted #e8e8e7;
+    padding: 0 15px;
+}
+
+.main-news-top-faster-title h2 {
+    float: left;
+    font: 400 16px/32px "microsoft yahei";
+}
+
+.main-news-top-faster-title a {
+    float: right;
+    font-family: "consolas";
+}
+
+.main-news-top-faster-content {
+    padding: 5px 0 0 15px;
+}
+
+.main-news-top-faster-content li {
+    line-height: 24px;
+}
+
+.main-news-top-faster-content span {
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+.main-news-top-money {
+    width: 260px;
+}
+
+.main-news-top-money li {
+    width: 62px;
+    height: 70px;
+    float: left;
+    border: 1px solid #e8e8e7;
+    margin-left: -1px;
+    margin-top: -1px;
+    border-top: none;
+}
+
+.main-news-top-money a {
+    display: block;
+    width: 62px;
+    height: 70px;
+    padding-top: 40px;
+    text-align: center;
+    line-height: 30px;
+    position: relative;
+}
+
+.main-news-top-money i {
+    position: absolute;
+    top: 13px;
+    left: 18px;
+    width: 25px;
+    height: 25px;
+    background: url("../Image/fly.png") no-repeat;
+}
+
+.main-news-top-money .main-news-top-money-icon1 {
+    background-position-y: -250px;
+}
+
+.main-news-top-money .main-news-top-money-icon2 {
+    background-position-y: -200px;
+}
+
+.main-news-top-money .main-news-top-money-icon3 {
+    background-position-y: -275px;
+}
+
+.main-news-top-money .main-news-top-money-icon4 {
+    background-position-y: -225px;
+}
+
+.main-news-top-money span {
+    width: 13px;
+    height: 16px;
+    line-height: 16px;
+    color: #fff;
+    background-color: green;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/*  main部分end  */
+
+/*  today部分start  */
+.today {
+    padding: 10px 0 20px;
+    position: relative;
+}
+
+.today-left {
+    float: left;
+}
+
+.today-left a {
+    width: 210px;
+    height: 151px;
+    display: block;
+    background:url("../Image/today.jpg") no-repeat;
+}
+
+.today-right {
+    width: 1000px;
+    float: right;
+    overflow: hidden;
+    position: relative;
+}
+
+.today-right ul {
+    width: 610%;
+    height: 164px;
+    position: relative;
+    /* transition-property: left;
+    transition-duration: 2s;
+    left: 0; */
+}
+
+.today-right li {
+    float: left;
+    margin-right: 1px;
+}
+/*  today部分end  */
+
+
+
