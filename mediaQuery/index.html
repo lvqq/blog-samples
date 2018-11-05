@@ -7,20 +7,25 @@
     <title>mediaQuery</title>
 </head>
 <body>
-    
+    <button class="btn">点击获取屏幕信息</button>
+    <p class="msg"></p>
     <script>
-        var result1 = window.matchMedia('(min-width:1200px)');
-        var result2 = window.matchMedia('(min-width:992px)');
-        var result3 = window.matchMedia('(min-width:768px)');
-        if(result1.matches) {
-            console.log("大屏幕(>=1200)");
-        }else if(result2.matches){
-            console.log("中等屏幕(>=992&<=1200)");
-        }else if(result3.matches){
-            console.log("小屏幕(>=768&<=992)");
-        }else{
-            console.log("超小屏幕(<=768)");
-        }
+        document.querySelector('.btn').addEventListener('click', function () { 
+            var result1 = window.matchMedia('(min-width:1200px)');
+            var result2 = window.matchMedia('(min-width:992px)');
+            var result3 = window.matchMedia('(min-width:768px)');
+            var mediaWidth;
+            if(result1.matches) {
+                mediaWidth = "大屏幕(>=1200)";
+            }else if(result2.matches){
+                mediaWidth = "中等屏幕(>=992&<=1200)";
+            }else if(result3.matches){
+                mediaWidth = "小屏幕(>=768&<=992)";
+            }else{
+                mediaWidth = "超小屏幕(<=768)";
+            }
+            document.querySelector('.msg').innerText = mediaWidth;
+        })
     </script>
 </body>
 </html>
