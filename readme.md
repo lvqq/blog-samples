@@ -1,4 +1,4 @@
-### 这里保存了我学前端以来所做过的一些demo。
+### 这些是学前端以来写过的一些demo
 
 - [图片懒加载实现](https://github.com/lvqq/Demos/tree/master/lazyLoad)
 - [3D相册](https://github.com/lvqq/Demos/tree/master/3DAlbum)

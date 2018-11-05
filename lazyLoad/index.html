@@ -77,7 +77,8 @@
             var $scrollTop = $(window).scrollTop();
             var $winHeight = $(window).height();
             var $offsetTop = $img.offset().top;
-            if($offsetTop < $scrollTop + $winHeight && $offsetTop > $scrollTop) {
+            var $imgHeight = $img.height();
+            if($offsetTop < $scrollTop + $winHeight && $offsetTop > $scrollTop - $imgHeight) {
                 return true;
             }
             return false;
