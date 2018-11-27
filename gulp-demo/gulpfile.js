@@ -1,6 +1,5 @@
-var gulp = require('gulp');
-
-var less = require('gulp-less'),                   //less 转 css
+var gulp = require('gulp'),
+    less = require('gulp-less'),                   //less 转 css
     csso = require('gulp-csso'),                   //css压缩
     concat = require('gulp-concat'),               //合并文件
     uglify = require('gulp-uglify'),               //js 压缩
@@ -11,7 +10,7 @@ var less = require('gulp-less'),                   //less 转 css
     revReplace = require('gulp-rev-replace'),      //版本号替换
     useref = require('gulp-useref'),               //解析html资源定位
     gulpif = require('gulp-if'),                   //if语句
-    connect = require('gulp-connect');             //create webserver
+    connect = require('gulp-connect');             //创建web服务器
 
 //图片压缩
 gulp.task('dist:img', () => {
@@ -20,7 +19,7 @@ gulp.task('dist:img', () => {
     .pipe(gulp.dest('dist/'))
 })
 
-//css
+//less转css压缩合并
 gulp.task('dist:css', () => {
     gulp.src('dist/css/*.css').pipe(clean());
     return gulp.src('./src/less/*.less')
@@ -30,6 +29,7 @@ gulp.task('dist:css', () => {
     .pipe(gulp.dest('dist/css/'));
 });
 
+//less转css
 gulp.task('src:css', () => {
     gulp.src('src/css/*.css').pipe(clean());
     return gulp.src('./src/less/*.less')
@@ -37,7 +37,7 @@ gulp.task('src:css', () => {
     .pipe(gulp.dest('src/css/'));
 });
 
-//js
+//js压缩合并
 gulp.task('dist:js', () => {
     gulp.src('dist/js/*.js').pipe(clean());
     return gulp.src('./src/js/*.js')
@@ -48,7 +48,7 @@ gulp.task('dist:js', () => {
     .pipe(gulp.dest('dist/js/'))
 });
 
-//revision
+//添加版本号
 gulp.task('revision', ['dist:css', 'dist:js'], () => {
     return gulp.src(["dist/css/*.css", "dist/js/*.js"])
     .pipe(rev())
@@ -57,7 +57,7 @@ gulp.task('revision', ['dist:css', 'dist:js'], () => {
     .pipe(gulp.dest('dist'))
 })
 
-//build
+//替换html
 gulp.task('build', ['dist:img'], () => {
     var manifest = gulp.src('dist/rev-manifest.json');
     return gulp.src('src/index.html')
@@ -68,7 +68,7 @@ gulp.task('build', ['dist:img'], () => {
     .pipe(gulp.dest('dist/'))
 })
 
-//connect
+//创建本地服务器
 gulp.task('connect', () => {
     connect.server({
         root: 'src',
@@ -77,18 +77,18 @@ gulp.task('connect', () => {
     })
 })
 
-//reload
+//设置自动刷新
 gulp.task('reload', () => {
     gulp.src('src/*.html')
     .pipe(connect.reload())
 })
 
-//watch
+//监听src变化
 gulp.task('watch', () => {
     gulp.watch('src/**/*', ['src:css', 'reload'])
 })
 
-
+//清除
 gulp.task('clean', () => {
     gulp.src('dist/*', {read: false})
     .pipe(clean())
