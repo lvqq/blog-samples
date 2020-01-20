@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    li {
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <ul>
+      <li><button id="expries">Expries test</button></li>
+      <li><button id="cacheControl">Cache-Control</button></li>
+      <li><button id="lastModified">Last-Modified</button></li>
+      <li><button id="eTag">ETag</button></li>
+    </ul>
+  </div>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+  <script>
+    $('#expries').click(function () { 
+      $.ajax({
+        url: 'http://localhost:2200/expries'
+      })
+    })
+
+    $('#cacheControl').click(function () { 
+      $.ajax({
+        url: 'http://localhost:2200/cacheControl'
+      })
+    })
+
+    $('#lastModified').click(function () { 
+      $.ajax({
+        url: 'http://localhost:2200/lastModified'
+      })
+    })
+
+    $('#eTag').click(function () { 
+      $.ajax({
+        url: 'http://localhost:2200/eTag'
+      })
+    })
+  </script>
+</body>
+</html>
