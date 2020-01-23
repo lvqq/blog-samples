@@ -8,11 +8,12 @@ module.exports = (req, res) => {
   const file = fs.readFileSync(filePath);
   const lastModified = stat.mtime.toUTCString();
 
+  res.setHeader('Cache-Control', 'public,max-age=10');
+
   if (lastModified === req.headers['if-modified-since']) {
     res.writeHead(304, 'Not Modified');
     res.end();
   } else {
-    res.setHeader('Cache-Control', 'public,max-age=10');
     res.setHeader('Last-Modified', lastModified);
     res.writeHead(200, 'OK');
     res.end(file);

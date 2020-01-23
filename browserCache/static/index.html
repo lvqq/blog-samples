@@ -14,38 +14,85 @@
 <body>
   <div>
     <ul>
-      <li><button id="expries">Expries test</button></li>
+      <li><button id="expries">Expries</button></li>
       <li><button id="cacheControl">Cache-Control</button></li>
       <li><button id="lastModified">Last-Modified</button></li>
       <li><button id="eTag">ETag</button></li>
+      <li><button id="pragmaReq">pragmaRequest</button><button id="pragmaRes">pragmaResponse</button></li>
+      <li>
+        缓存优先级：
+        <ul>
+          <li><button id="priority1">Pragma > Cache-Control</button></li>
+          <li><button id="priority2">Cache-Control > Expries</button></li> 
+        </ul>
+      </li>
     </ul>
   </div>
   <script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
   <script>
     $('#expries').click(function () { 
       $.ajax({
-        url: 'http://localhost:2200/expries'
+        url: 'expries',
+        headers: {
+          'Cache-Control': 'no-cache',
+        }
       })
     })
 
     $('#cacheControl').click(function () { 
       $.ajax({
-        url: 'http://localhost:2200/cacheControl'
+        url: 'cacheControl',
+        headers: {
+          'Cache-Control': 'no-cache',
+        }
       })
     })
 
     $('#lastModified').click(function () { 
       $.ajax({
-        url: 'http://localhost:2200/lastModified'
+        url: 'lastModified'
       })
     })
 
     $('#eTag').click(function () { 
       $.ajax({
-        url: 'http://localhost:2200/eTag'
+        url: 'eTag',
+      })
+    })
+
+    $('#pragmaReq').click(function () { 
+      $.ajax({
+        url: 'pragmaRequest',
+        headers: {
+          Pragma: 'no-cache',
+        },
+        success: function() {
+          console.log('pragmaRequest')
+        }
+      })
+    })
+
+    $('#pragmaRes').click(function () { 
+      $.ajax({
+        url: 'pragmaResponse',
+        success: function() {
+          console.log('pragmaResponse')
+        }
+      })
+    })
+
+    $('#priority1').click(function () { 
+      $.ajax({
+        url: 'priority1',
+      })
+    })
+
+    $('#priority2').click(function () { 
+      $.ajax({
+        url: 'priority2',
       })
     })
   </script>

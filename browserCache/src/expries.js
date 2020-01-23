@@ -1,8 +1,6 @@
-const moment = require('moment');
-
-const getGMT = () => `${moment().utc().add(10, 's').format('ddd, DD MMM YYYY HH:mm:ss')} GMT`;
+const { getGMT } = require('./utils')
 
 module.exports = (req, res) => {
-  res.setHeader('Expires', getGMT());
+  res.setHeader('Expires', getGMT(10));
   res.end('ok');
 }
