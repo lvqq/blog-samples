@@ -1,4 +1,5 @@
 // 验证层级过深递归栈溢出
+const cloneDeep = require('../src/clone3')
 
 function create(depth, breadth) {
   const data = {}
@@ -16,4 +17,5 @@ function create(depth, breadth) {
 }
 
 const data = create(10000, 100)
-cloneDeep(data)
+
+console.log(cloneDeep(data))
