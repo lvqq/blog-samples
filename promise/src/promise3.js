@@ -1,4 +1,5 @@
 // 完整版 promise
+// 实现 promise 链式调用、异步执行
 
 const STATE = {
   PENDING: 'pending',
@@ -55,7 +56,7 @@ class MyPromise {
             const x = onFulfilled(this.value)
             generatePromise(promise2, x, fulfill, reject)
           } catch (e) {
-
+            reject(e)
           }
         }
         if (this.state === STATE.REJECTED) {
