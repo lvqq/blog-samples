@@ -12,48 +12,34 @@ const TYPE = {
 // 获取数据类型
 const getType = (data) => Object.prototype.toString.call(data).slice(8, -1)
 
-// 判断item是否入栈并初始化
+// 初始化item并入栈
 function generate(item, stack, hash) {
-  const Constructor = item.constructor
-  const type = getType(item)
-  let cloneItem = item
+  if (!item || typeof item !== 'object') return item
   if(hash.has(item)) return hash.get(item)
-  switch(type) {
-    case TYPE.Object:
-      // 获取原对象的原型
-      cloneItem = Object.create(Object.getPrototypeOf(item))
-      stack.push({
-        target: cloneItem,
-        source: item,
-      })
-      break
-    case TYPE.Array:
-      cloneItem = []
-      stack.push({
-        target: cloneItem,
-        source: item,
-      })
-      break
-    case TYPE.Date:
-      cloneItem = new Constructor(item.getTime())
-      break
-    case TYPE.RegExp:
-      const reFlags = /\w*$/
-      // 特殊处理regexp，拷贝过程中lastIndex属性会丢失
-      cloneItem = new Constructor(item.source, reFlags.exec(item))
-      cloneItem.lastIndex = item.lastIndex
-      break
-    case TYPE.Set:
-    case TYPE.Map:
-      cloneItem = new Constructor()
-      stack.push({
-        target: cloneItem,
-        source: item,
-      })
+  let cloneItem = item
+  const Constructor = item.constructor
+  const itemType = getType(item)
+  // data 初始化
+  if (itemType === TYPE.Array) {
+    cloneItem = []
+  } else if (itemType === TYPE.Object) {
+    // 获取原对象的原型
+    cloneItem = Object.create(Object.getPrototypeOf(item))
+  } else if (itemType === TYPE.Date) {
+    cloneItem = new Constructor(item.getTime())
+  } else if (itemType === TYPE.RegExp) {
+    const reFlags = /\w*$/
+    // 特殊处理regexp，拷贝过程中lastIndex属性会丢失
+    cloneItem = new Constructor(item.source, reFlags.exec(item))
+    cloneItem.lastIndex = item.lastIndex
+  } else if (itemType === TYPE.Set || itemType === TYPE.Map) {
+    cloneItem = new Constructor()
   }
-  if (TYPE[type]) {
-    hash.set(item, cloneItem)
-  }
+  stack.push({
+    target: cloneItem,
+    source: item,
+  })
+  hash.set(item, cloneItem)
   return cloneItem
 }
 
@@ -67,33 +53,23 @@ function cloneDeep(data) {
     // 栈顶节点出栈
     const node = stack.pop()
     const { target, source } = node
-    switch (getType(source)) {
-      case TYPE.Array:
-        source.forEach(value => {
-          target.push(generate(value, stack, hash))
-        })
-        break
-      case TYPE.Object:
-        for (let key in source) {
-          // 不考虑继承的属性
-          if (source.hasOwnProperty(key)) {
-            target[key] = generate(source[key], stack, hash)
-          }
+    const type = getType(source)
+    // 遍历 source
+    if (type === TYPE.Set) {
+      for (let value of source) {
+        target.add(generate(value, stack, hash))
+      }
+    } else if (type === TYPE.Map) {
+      for (let [mapKey, mapValue] of source) {
+        target.set(generate(mapKey, stack, hash), generate(mapValue, stack, hash))
+      }
+    } else {
+      for (let key in source) {
+        // 不考虑继承的属性
+        if (source.hasOwnProperty(key)) {
+          target[key] = generate(source[key], stack, hash)
         }
-        // 处理Object中Symbol类型的键名
-        Object.getOwnPropertySymbols(source).forEach(symbol => {
-          target[symbol] = generate(source[symbol], stack, hash)
-        })
-        break
-      case TYPE.Set:
-        source.forEach(value => {
-          target.add(generate(value, stack, hash))
-        })
-        break
-      case TYPE.Map:
-        for (let [mapKey, mapValue] of source) {
-          target.set(generate(mapKey, stack, hash), generate(mapValue, stack, hash))
-        }
+      }
     }
   }
   return cloneData
