@@ -1,5 +1,4 @@
-// 完整版 promise
-// 实现 promise 链式调用、异步执行
+// 实现了链式调用、传递返回值
 
 const STATE = {
   PENDING: 'pending',
@@ -42,90 +41,26 @@ class MyPromise {
     }
   }
 
-  then(onFulfilled, onReject) {
-    // Promises/A+ 规范规定： 
-    // 如果 onFulfilled 不是函数且 promise1 成功执行， promise2 必须成功执行并返回相同的值
-    // 如果 onRejected 不是函数且 promise1 拒绝执行， promise2 必须拒绝执行并返回相同的据因
-    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
-    onReject = typeof onReject === 'function' ? onReject : e => { throw e }
-    const promise2 = new MyPromise((fulfill, reject) => {
-      // setTimeout 宏任务，确保onFulfilled 和 onReject 异步执行
-      setTimeout(() => {
-        if (this.state === STATE.FULFILLED) {
-          try {
-            const x = onFulfilled(this.value)
-            generatePromise(promise2, x, fulfill, reject)
-          } catch (e) {
-            reject(e)
-          }
-        }
-        if (this.state === STATE.REJECTED) {
-          try {
-            const x = onReject(this.reason)
-            generatePromise(promise2, x, fulfill, reject)
-          } catch (e) {
-            reject(e)
-          }
-        }
-        // 当 then 是 pending 时，将这两个状态写入数组中
-        if (this.state === STATE.PENDING) {
-          this.fulfilledCallbacks.push(() => {
-            const x = onFulfilled(this.value)
-            generatePromise(promise2, x, fulfill, reject)
-          })
-          this.rejectedCallbacks.push(() => {
-            try {
-              const x = onReject(this.reason)
-              generatePromise(promise2, x, fulfill, reject)
-            } catch (e) {
-              reject(e)
-            }
-          })
-        }
-      }, 0)
-    })
-    return promise2
-  }
-}
-
-function generatePromise(promise2, x, fulfill, reject) {
-  if (promise2 === x) {
-    return reject(new TypeError('Chaining cycle detected for promise'))
-  }
-  // 如果 x 是 promise，继续遍历
-  if (x instanceof MyPromise) {
-    x.then((value) => {
-      generatePromise(promise2, value, fulfill, reject)
-    }, (e) => {
-      reject(e)
-    })
-  } else if (x != null && (typeof x === 'object' || typeof x === 'function')) {
-    // 防止重复调用，成功和失败只能调用一次
-    let called;
-    // 如果 x 是对象或函数
-    try {
-      const then = x.then
-      if (typeof then === 'function') {
-        then.call(x, (y) => {
-          if (called) return;
-          called = true;
-          // 说明 y是 promise，继续遍历
-          generatePromise(promise2, y, fulfill, reject)
-        }, (r) => {
-          if (called) return;
-          called = true;
-          reject(r)
-        })
-      } else {
-        fulfill(x)
+  then(onFulfill, onReject) {
+    return new MyPromise((fulfill, reject) => {
+      if (this.state === STATE.FULFILLED) {
+        // 将返回值传入下一个 fulfill 中
+        fulfill(onFulfill(this.value))
       }
-    } catch(e) {
-      if (called) return
-      called = true
-      reject(e)
-    }
-  } else {
-    fulfill(x)
+      if (this.state === STATE.REJECTED) {
+        // 将返回值传入下一个 reject 中
+        reject(onReject(this.reason))
+      }
+      // 当 then 是 pending 时，将这两个状态写入数组中
+      if (this.state === STATE.PENDING) {
+        this.fulfilledCallbacks.push(() => {
+          fulfill(onFulfill(this.value))
+        })
+        this.rejectedCallbacks.push(() => {
+          reject(onReject(this.reason))
+        })
+      }
+    })
   }
 }
 

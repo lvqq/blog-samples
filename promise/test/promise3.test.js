@@ -8,11 +8,7 @@ const promise = new MyPromise((resolve) => {
 
 promise.then((value) => {
   console.log('value1', value);
-  return new MyPromise((resolve) => {
-    setTimeout(() => {
-      resolve(2)
-    }, 100)
-  })
+  return 2
 })
 .then((value) => {
   console.log('value2', value);

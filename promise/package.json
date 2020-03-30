@@ -1,0 +1,21 @@
+{
+  "name": "promise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test1": "node ./test/promise1.test.js",
+    "test2": "node ./test/promise2.test.js",
+    "test3": "node ./test/promise3.test.js",
+    "test4": "promises-aplus-tests ./test/promise4.test.js",
+    "test5": "node ./test/promise5.test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "promises-aplus-tests": "^2.1.2"
+  }
+}

@@ -2,7 +2,7 @@
 
 const STATE = {
   PENDING: 'pending',
-  FULLFILLED: 'fullfilled',
+  FULFILLED: 'fulfilled',
   REJECTED: 'rejected'
 }
 
@@ -13,15 +13,15 @@ class MyPromise {
     this.value = null
     this.reason = null
     // 保存数组
-    this.fullfilledCallbacks = []
+    this.fulfilledCallbacks = []
     this.rejectedCallbacks = []
     // 成功
-    const fullfill = (value) => {
+    const fulfill = (value) => {
       // 只有 state 为 pending 时，才可以更改状态
       if (this.state === STATE.PENDING) {
-        this.state = STATE.FULLFILLED
+        this.state = STATE.FULFILLED
         this.value = value
-        this.fullfilledCallbacks.forEach(cb => cb())
+        this.fulfilledCallbacks.forEach(cb => cb())
       }
     }
 
@@ -35,23 +35,23 @@ class MyPromise {
     }
     // 执行函数出错时调用 reject
     try {
-      fn(fullfill, reject)
+      fn(fulfill, reject)
     } catch (e) {
       reject(e)
     }
   }
 
-  then(onFullfill, onReject) {
-    if (this.state === STATE.FULLFILLED) {
-      onFullfill(this.value)
+  then(onFulfill, onReject) {
+    if (this.state === STATE.FULFILLED) {
+      onFulfill(this.value)
     }
     if (this.state === STATE.REJECTED) {
       onReject(this.reason)
     }
     // 当 then 是 pending 时，将这两个状态写入数组中
     if (this.state === STATE.PENDING) {
-      this.fullfilledCallbacks.push(() => {
-        onFullfill(this.value)
+      this.fulfilledCallbacks.push(() => {
+        onFulfill(this.value)
       })
       this.rejectedCallbacks.push(() => {
         onReject(this.reason)
