@@ -44,14 +44,14 @@ class MyPromise {
     }
   }
 
-  then(onFulfilled, onReject) {
+  then(onFulfilled, onRejected) {
     // Promises/A+ 规范规定： 
     // 如果 onFulfilled 不是函数且 promise1 成功执行， promise2 必须成功执行并返回相同的值
-    // 如果 onRejected 不是函数且 promise1 拒绝执行， promise2 必须拒绝执行并返回相同的据因
+    // 如果 onRejected 不是函数且 promise1 拒绝执行， promise2 必须拒绝执行并返回相同的拒因
     onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
-    onReject = typeof onReject === 'function' ? onReject : e => { throw e }
+    onRejected = typeof onRejected === 'function' ? onRejected : e => { throw e }
     const promise2 = new MyPromise((fulfill, reject) => {
-      // setTimeout 宏任务，确保onFulfilled 和 onReject 异步执行
+      // setTimeout 宏任务，确保onFulfilled 和 onRejected 异步执行
       setTimeout(() => {
         if (this.state === STATE.FULFILLED) {
           try {
@@ -63,7 +63,7 @@ class MyPromise {
         }
         if (this.state === STATE.REJECTED) {
           try {
-            const x = onReject(this.reason)
+            const x = onRejected(this.reason)
             generatePromise(promise2, x, fulfill, reject)
           } catch (e) {
             reject(e)
@@ -77,7 +77,7 @@ class MyPromise {
           })
           this.rejectedCallbacks.push(() => {
             try {
-              const x = onReject(this.reason)
+              const x = onRejected(this.reason)
               generatePromise(promise2, x, fulfill, reject)
             } catch (e) {
               reject(e)
@@ -88,8 +88,8 @@ class MyPromise {
     })
     return promise2
   }
-  catch(onReject) {
-    return this.then(null, onReject)
+  catch(onRejected) {
+    return this.then(null, onRejected)
   }
   finally(callback) {
     return this.then(callback, callback)
@@ -141,8 +141,9 @@ MyPromise.resolve = (value) => {
   // 传入 promise 类型直接返回
   if (value instanceof MyPromise) return value
   // 传入 thenable 对象时，立即执行 then 方法
-  if (value !== null && typeof value === 'object' && value.then && typeof value.then === 'function') {
-    return new MyPromise(value.then)
+  if (value !== null && typeof value === 'object') {
+    const then = value.then
+    if (then && typeof then === 'function') return new MyPromise(value.then)
   }
   return new MyPromise((resolve) => {
     resolve(value)
@@ -159,34 +160,79 @@ MyPromise.reject = (reason) => {
 
 MyPromise.race = (promises) => {
   return new MyPromise((resolve, reject) => {
-    promises.forEach(promise => {
+    // promises 可以不是数组，但必须存在 Iterator 接口，因此采用 for...of 遍历
+    for(let promise of promises) {
       // 如果当前值不是 Promise，通过 resolve 方法转为 promise
       if (promise instanceof MyPromise) {
-        promise.then(resolve,reject)
+        promise.then(resolve, reject)
       } else {
         MyPromise.resolve(promise).then(resolve, reject)
       }
-    })
+    }
   })
 }
 
 MyPromise.all = (promises) => {
   return new MyPromise((resolve, reject) => {
     const arr = []
+    // 已返回数
     let count = 0
-    promises.forEach((promise, index) => {
+    // 当前索引
+    let index = 0
+    // promises 可以不是数组，但必须存在 Iterator 接口，因此采用 for...of 遍历
+    for(let promise of promises) {
       // 如果当前值不是 Promise，通过 resolve 方法转为 promise
       if (!(promise instanceof MyPromise)) {
         promise = MyPromise.resolve(promise)
-      } 
-      promise.then((value) => {
-        arr[index] = value
-        count++
-        if (count === promises.length) {
-          resolve(arr)
-        }
-      }, reject)
-    })
+      }
+      // 使用闭包保证异步返回数组顺序
+      ((i) => {
+        promise.then((value) => {
+          arr[i] = value
+          count += 1
+          if (count === promises.length || count === promises.size) {
+            resolve(arr)
+          }
+        }, reject)
+      })(index)
+      // index 递增
+      index += 1
+    }
+  })
+}
+
+MyPromise.allSettled = (promises) => {
+  return new MyPromise((resolve, reject) => {
+    const arr = []
+    // 已返回数
+    let count = 0
+    // 当前索引
+    let index = 0
+    // promises 可以不是数组，但必须存在 Iterator 接口，因此采用 for...of 遍历
+    for(let promise of promises) {
+      // 如果当前值不是 Promise，通过 resolve 方法转为 promise
+      if (!(promise instanceof MyPromise)) {
+        promise = MyPromise.resolve(promise)
+      }
+      // 使用闭包保证异步返回数组顺序
+      ((i) => {
+        promise.then((value) => {
+          arr[i] = value
+          count += 1
+          if (count === promises.length || count === promises.size) {
+            resolve(arr)
+          }
+        }, (err) => {
+          arr[i] = err
+          count += 1
+          if (count === promises.length || count === promises.size) {
+            resolve(arr)
+          }
+        })
+      })(index)
+      // index 递增
+      index += 1
+    }
   })
 }
 

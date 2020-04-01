@@ -37,12 +37,12 @@ class MyPromise {
     }
   }
 
-  then(onFulfill, onReject) {
+  then(onFulfilled, onRejected) {
     if (this.state === STATE.FULFILLED) {
-      onFulfill(this.value)
+      onFulfilled(this.value)
     }
     if (this.reason === STATE.REJECTED) {
-      onReject(this.reason)
+      onRejected(this.reason)
     }
   }
 }

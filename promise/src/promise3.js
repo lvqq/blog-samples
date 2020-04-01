@@ -41,23 +41,23 @@ class MyPromise {
     }
   }
 
-  then(onFulfill, onReject) {
+  then(onFulfilled, onRejected) {
     return new MyPromise((fulfill, reject) => {
       if (this.state === STATE.FULFILLED) {
         // 将返回值传入下一个 fulfill 中
-        fulfill(onFulfill(this.value))
+        fulfill(onFulfilled(this.value))
       }
       if (this.state === STATE.REJECTED) {
         // 将返回值传入下一个 reject 中
-        reject(onReject(this.reason))
+        reject(onRejected(this.reason))
       }
       // 当 then 是 pending 时，将这两个状态写入数组中
       if (this.state === STATE.PENDING) {
         this.fulfilledCallbacks.push(() => {
-          fulfill(onFulfill(this.value))
+          fulfill(onFulfilled(this.value))
         })
         this.rejectedCallbacks.push(() => {
-          reject(onReject(this.reason))
+          reject(onRejected(this.reason))
         })
       }
     })

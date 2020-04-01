@@ -41,20 +41,20 @@ class MyPromise {
     }
   }
 
-  then(onFulfill, onReject) {
+  then(onFulfilled, onRejected) {
     if (this.state === STATE.FULFILLED) {
-      onFulfill(this.value)
+      onFulfilled(this.value)
     }
     if (this.state === STATE.REJECTED) {
-      onReject(this.reason)
+      onRejected(this.reason)
     }
     // 当 then 是 pending 时，将这两个状态写入数组中
     if (this.state === STATE.PENDING) {
       this.fulfilledCallbacks.push(() => {
-        onFulfill(this.value)
+        onFulfilled(this.value)
       })
       this.rejectedCallbacks.push(() => {
-        onReject(this.reason)
+        onRejected(this.reason)
       })
     }
   }

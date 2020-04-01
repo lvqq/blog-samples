@@ -48,7 +48,7 @@ MyPromise.race([new MyPromise((resolve) => {
   setTimeout(() => {
     resolve(2)
   }, 500)
-})])
+}), 3])
 .then(val => {
   console.log('race', val);
 })
@@ -78,4 +78,17 @@ MyPromise.all([new MyPromise((resolve) => {
 })])
 .catch(e => {
   console.log('all2', e);
+})
+
+MyPromise.allSettled([new MyPromise((resolve) => {
+  setTimeout(() => {
+    resolve(1)
+  }, 1000)
+}), new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    reject(2)
+  }, 500)
+})])
+.then(arr => {
+  console.log('allSettled', arr);
 })
