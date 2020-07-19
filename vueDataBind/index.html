@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>双向绑定demo</title>
+</head>
+<body>
+  <div id="app">
+    姓名：{{ name }}
+    <div>请输入姓名<input v-model="name" /></div>  
+    年龄 {{ age }}
+    <div>
+      <button id="btn">点击更改年龄</button>
+    </div>
+  </div>
+
+  <script src="./Vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el: 'app',
+      data: {
+        name: 'liming',
+        age: 18,
+      }
+    })
+
+    document.getElementById('btn').onclick = () => {
+      vm._data.age = Math.floor(Math.random() * 80)
+    }
+  </script>
+</body>
+</html>
