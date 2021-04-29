@@ -1,10 +1,10 @@
-本仓库保存了博客以及日常学习过程中的一些样例代码和相关实现，如下：
+This repo saved the daily samples of code in my blog:
 
 ### Samples
-- [Vue双向绑定实现](https://github.com/lvqq/Demos/tree/master/vueDataBind)
-- [手写promise](https://github.com/lvqq/Demos/tree/master/promise)
-- [浏览器缓存demo](https://github.com/lvqq/Demos/tree/master/browserCache)
-- [手写深拷贝](https://github.com/lvqq/Demos/tree/master/cloneDeep)
-- [gulp入门demo](https://github.com/lvqq/Demos/tree/master/gulp-demo)
-- [图片懒加载实现](https://github.com/lvqq/Demos/tree/master/lazyLoad)
-- [放大器实现](https://github.com/lvqq/Demos/tree/master/enlarge)
+- [Vue data bind](https://github.com/lvqq/blog-samples/tree/master/vueDataBind)
+- [implement a promise](https://github.com/lvqq/blog-samples/tree/master/promise)
+- [browser cache demo](https://github.com/lvqq/blog-samples/tree/master/browserCache)
+- [implement cloneDeep](https://github.com/lvqq/blog-samples/tree/master/cloneDeep)
+- [gulp demo](https://github.com/lvqq/blog-samples/tree/master/gulp-demo)
+- [implement images lazyload](https://github.com/lvqq/blog-samples/tree/master/lazyLoad)
+- [implement amplifier](https://github.com/lvqq/blog-samples/tree/master/amplifier)
