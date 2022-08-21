@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+      /* 构建、工程化选项 */
+
+      // baseUrl: 解析的根目录
+      "baseUrl": "src",
+      // target: 编译代码到目标 ECMAScript 版本，一般是 es5/es6
+      "target": "es5", 
+      // lib: 运行时环境支持的语法，默认与 tagert 的值相关联
+      "lib": ["dom", "es5", "es6", "esnext"], 
+      // module: 编译产物对应的模块化标准，常用值包括 commonjs/es6/esnext 等
+      "module": "esnext", 
+      // moduleResolution: 模块解析策略，支持 node/classic，后者基本不推荐使用
+      "moduleResolution": "node",
+      // allowJs：是否允许引入 .js 文件
+      "allowJs": true,
+      // checkJs: 是否检查 .js 文件中的错误
+      "checkJs": true,
+      // declaration: 是否生成对应的 .d.ts 类型文件，一般作为 npm 包提供时需要开启
+      "declaration": false,
+      // sourceMap: 是否生成对应的 .map 文件
+      "sourceMap": true, 
+      // noEmit: 是否将构建产物写入文件系统，一个常见的实践是只用 tsc 进行类型检查，使用单独的打包工具进行打包
+      "noEmit": true,
+      // jsx: 如何处理 .tsx 文件中对于 jsx 的生成，常用值包括：react/preserve
+      // 详细比对：https://www.typescriptlang.org/tsconfig#jsx
+      "jsx": "preserve",
+      // esModuleInterop: 开启后会生成辅助函数以兼容处理在 esm 中导入 cjs 的情况
+      "esModuleInterop": true,
+      // allowSyntheticDefaultImports: 在 cjs 没有默认导出时进行兼容，配合 esModuleInterop 使用
+      "allowSyntheticDefaultImports": true,
+      // forceConsistentCasingInFileNames: 是否强制导入文件时与系统文件的大小写一致
+      "forceConsistentCasingInFileNames": true,
+      // resolveJsonModule：是否支持导入 json 文件，并做类型推导和检查
+      "resolveJsonModule": true,
+      // experimentalDecorators: 是否支持装饰器实验性语法
+      "experimentalDecorators": true,
+
+      /* 类型检查选项 */
+      
+      // strict: 是否启动严格的类型检查，包含一系列选项：https://www.typescriptlang.org/tsconfig#strict
+      "strict": true,
+      // skipLibCheck: 是否跳过非源代码中所有类型声明文件（.d.ts）的检查
+      "skipLibCheck": true,
+      // strictNullChecks: 是否启用严格的 null 检查
+      "strictNullChecks": true,
+      // noImplicitAny: 包含隐式 any 声明时是否报错
+      "noImplicitAny": true,
+      // noImplicitReturns: 是否要求所有函数执行路径中都有返回值
+      "noImplicitReturns": true,
+      // noUnusedLocals: 存在未使用的变量时是否报错
+      "noUnusedLocals": false,
+      // noUnusedParameters: 存在未使用的参数时是否报错
+      "noUnusedParameters": false,
+  }
+}
