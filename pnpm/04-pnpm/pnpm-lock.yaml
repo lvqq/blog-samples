@@ -1,0 +1,31 @@
+lockfileVersion: 5.4
+
+specifiers:
+  demo-baz: 1.0.0
+  demo-foo: 1.0.1
+
+dependencies:
+  demo-baz: 1.0.0
+  demo-foo: 1.0.1
+
+packages:
+
+  /demo-bar/1.0.0:
+    resolution: {integrity: sha512-M32T7z7T8L6+YNWtLhWi2Cul7K6U5yAziWME2fhPHX36XWFUdVyCy6PJD3XdFBKy0cacfWSfEJTWmBkB5f4iEw==}
+    dev: false
+
+  /demo-bar/1.0.1:
+    resolution: {integrity: sha512-lz5T/6ZnugMaiiG60H0vDuCcPtIu7HNF4Q9MQHXoqYRno0NSgR7MLRrGtNwFZ584XKix/pV+a0nWBOE8LdAajQ==}
+    dev: false
+
+  /demo-baz/1.0.0:
+    resolution: {integrity: sha512-Q5WJf+3qk2kZ+wV8Y+EiJNqN9uATjfSR29Ml7HUMLFSoGP/OeG8MYe3lvlEmidmE5GKBAszzCW5wUVJU3t5RQg==}
+    dependencies:
+      demo-bar: 1.0.0
+    dev: false
+
+  /demo-foo/1.0.1:
+    resolution: {integrity: sha512-fnUHFEsantdtmml6hBlskQ156CVbe2XXPMT9ec80E2ja597yxcK25Z53qb4pfGGLoLzWWr9MRT/6WG2IfGjS6g==}
+    dependencies:
+      demo-bar: 1.0.1
+    dev: false
