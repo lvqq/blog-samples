@@ -1,6 +1,7 @@
 Blog daily samples
 
 ### Samples
+- [pnpm](https://github.com/lvqq/blog-samples/tree/master/pnpm)
 - [TypeScript](https://github.com/lvqq/blog-samples/tree/master/typescript)
 - [Vue data-bind](https://github.com/lvqq/blog-samples/tree/master/vueDataBind)
 - [Promise](https://github.com/lvqq/blog-samples/tree/master/promise)
