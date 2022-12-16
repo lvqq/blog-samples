@@ -1,7 +1,5 @@
-Blog daily samples
-
-### Samples
-- [pnpm](https://github.com/lvqq/blog-samples/tree/master/pnpm)
+## Samples
+- [Pnpm](https://github.com/lvqq/blog-samples/tree/master/pnpm)
 - [TypeScript](https://github.com/lvqq/blog-samples/tree/master/typescript)
 - [Vue data-bind](https://github.com/lvqq/blog-samples/tree/master/vueDataBind)
 - [Promise](https://github.com/lvqq/blog-samples/tree/master/promise)
@@ -10,3 +8,6 @@ Blog daily samples
 - [Gulp](https://github.com/lvqq/blog-samples/tree/master/gulp-demo)
 - [Lazyload](https://github.com/lvqq/blog-samples/tree/master/lazyLoad)
 - [Amplifier](https://github.com/lvqq/blog-samples/tree/master/amplifier)
+
+## Blog Repository
+- [Blogs](https://github.com/lvqq/blog)
